@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Análise de sentimento</title>
+    <style>
+      body { font-family: system-ui, sans-serif; max-width: 720px; margin: 4rem auto; padding: 0 1rem; color: #17202a; }
+      textarea { width: 100%; min-height: 9rem; padding: .75rem; box-sizing: border-box; }
+      button { margin-top: .75rem; padding: .65rem 1rem; cursor: pointer; }
+      .result { margin-top: 1.5rem; padding: 1rem; background: #e8f5ee; border-left: 4px solid #25855a; }
+      .warning { margin-top: .75rem; padding: 1rem; background: #fff4e5; border-left: 4px solid #c05621; }
+    </style>
+  </head>
+  <body>
+    <h1>English sentiment analysis</h1>
+    <form method="post">
+      <label for="text">English text</label>
+      <textarea id="text" name="text" placeholder="Write an opinion...">{{ text }}</textarea>
+      <button type="submit">Analyze</button>
+    </form>
+    {% if label is not none %}
+      <section class="result" aria-live="polite">
+        <strong>Result: {{ label }}</strong><br>
+        Polarity: {{ polarity }}
+      </section>
+      {% if content_label == "insulto" %}
+        <section class="warning" aria-live="polite">Insulting language detected.</section>
+      {% elif content_label == "discriminatorio" %}
+        <section class="warning" aria-live="polite">Discriminatory language or references detected.</section>
+      {% else %}
+        <section class="result" aria-live="polite">No insults or discriminatory language detected.</section>
+      {% endif %}
+    {% endif %}
+  </body>
+</html>

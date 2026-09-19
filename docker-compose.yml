@@ -1,0 +1,14 @@
+services:
+  app:
+    build: .
+    image: nplproject:latest
+    environment:
+      DISPLAY: :99
+      NLTK_DATA: /usr/local/share/nltk_data
+    expose:
+      - "6080"
+      - "5000"
+    volumes:
+      - .:/app
+    stdin_open: true
+    tty: true

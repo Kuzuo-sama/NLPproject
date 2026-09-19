@@ -1,0 +1,4 @@
+spacy>=3.8,<4
+nltk>=3.9,<4
+textblob>=0.18,<1
+flask>=3.1,<4
